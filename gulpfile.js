@@ -4,6 +4,7 @@ let gulp = require("gulp"),
     rigger = require("gulp-rigger"),
     preFixer = require("gulp-autoprefixer"),
     browserSync = require('browser-sync'),
+    combineMedia = require('gulp-combine-media'),
     del = require('del'),
     cssnano = require('gulp-cssnano'),
     rename = require('gulp-rename'),
@@ -80,6 +81,7 @@ gulp.task("css:build", function () {
     return gulp.src(path.src.css)
         .pipe(sass())
         .pipe(preFixer(['last 15 versions', '> 1%', 'ie 8', 'ie 7'], {cascade: true}))
+        .pipe(combineMedia())
         .pipe(gulp.dest(path.build.css))
         .pipe(reload({stream: true}));
 });
